@@ -1,0 +1,37 @@
+from random import randint
+
+def play():
+	secret_number = randint(1,100)
+	userguess(secret_number)
+
+#                               function to take users guess and convert it to an int
+def userguess(secret_number):
+	guess = input("Guess a number between 1 and 100\n\t")
+	try:
+		guess = int(guess)
+		howhighlow(secret_number, guess)
+	except:
+		print("\n\nSomething went wrong, try again\n\n")
+		userguess(secret_number)
+
+#                               Feedback on users guess
+def howhighlow(secret_number, guess):
+	if guess == secret_number:
+		print("You guessed it!\n\t")
+		take2()
+	elif guess > secret_number:
+		print("Too high!\n\t")
+		userguess(secret_number)
+	elif guess < secret_number:
+		print("Too low!\n\t")
+		userguess(secret_number)
+#                           Play again?
+def take2():
+	opt = input("Try again?\n")
+	if opt[0] == ("y" or "Y"):
+		play()
+	elif opt[0] == ("n" or "N"):
+		print('\nGoodbye')
+    quit()
+  else:
+    take2()
