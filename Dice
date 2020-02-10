@@ -1,0 +1,31 @@
+from random import randint
+
+def diceRoll(min,max):
+	print(randint(min,max))
+	play_again()
+
+def play_again():
+	opt = input("Play again?\n\t")
+	if opt[0] == "Y" or "y":
+		nextGame()
+	elif opt[0] == "N" or "n":
+		quit() 
+	play_again()
+
+
+def game(min, max):
+	diceRoll(min,max)
+
+def nextGame():
+	opt = input("Change min and max numbers?\nEnter N or Y\n\t")
+	if opt[0] == "Y" or "y":
+		min = int(input("Enter the lowest number\n\t"))
+		max = int(input("Enter the highest number\n\t"))
+		game(min,max)
+	elif opt[0] == "N" or "n":
+		game(1,6) 
+	nextGame()	
+
+
+#Play game
+#game(1,6)
