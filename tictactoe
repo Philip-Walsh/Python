@@ -1,0 +1,122 @@
+from replit import clear
+from time import sleep
+def intro():
+	print("""
+████████╗██╗ ██████╗
+╚══██╔══╝██║██╔════╝
+   ██║   ██║██║     
+   ██║   ██║██║     
+   ██║   ██║╚██████╗
+   ╚═╝   ╚═╝ ╚═════╝""")
+	sleep(0.5)
+	clear()
+	print("""
+████████╗ █████╗  ██████╗
+╚══██╔══╝██╔══██╗██╔════╝
+   ██║   ███████║██║     
+   ██║   ██╔══██║██║     
+   ██║   ██║  ██║╚██████╗
+   ╚═╝   ╚═╝  ╚═╝ ╚═════╝""")
+	sleep(0.5)
+	clear()
+	print("""
+████████╗ ██████╗ ███████╗
+╚══██╔══╝██╔═══██╗██╔════╝
+   ██║   ██║   ██║█████╗  
+   ██║   ██║   ██║██╔══╝  
+   ██║   ╚██████╔╝███████╗
+   ╚═╝    ╚═════╝ ╚══════╝""")
+	sleep(0.7)
+	clear()
+
+def TicTacToe():
+  # your code goes here
+  counter = 1
+  run = True
+  board = [[" "," "," "],[" "," "," "],[" "," "," "]]
+  prettify(board)
+  while run:
+    user = "2" if (counter%2) == 0 else "1"
+    print(f"\nPlayer {user}")
+    row = int(input("Enter row here: "))
+    col = int(input("Enter column here: "))
+    if 0 <= (row and col) <= 2:
+      clear()
+      if board[row][col] == " ":
+        if counter % 2 :
+          board[row][col] = 'X'
+          if check3inRow(board,"X") or check3inColumn(board,"X") or check3inDiagonal(board, "X"):
+            print("""
+			___________
+           '._==_==_=_.'
+           .-\:      /-.
+          | (|:.     |) |
+           '-|:. 1   |-'
+             \::.    /
+              '::. .'
+                ) (
+              _.' '._
+             `'''''''`
+			Player one wins!\n""")
+            sleep(2)
+            run = False
+        else:
+          board[row][col] = 'O'
+          if check3inRow(board,"O") or check3inColumn(board,"O") or check3inDiagonal(board, "O"):
+            print("""
+			___________
+           '._==_==_=_.'
+           .-\:      /-.
+          | (|:.     |) |
+           '-|:. 2   |-'
+             \::.    /
+              '::. .'
+                ) (
+              _.' '._
+             `'''''''`
+			Player two wins!\n""")
+            run = False
+            sleep(2)
+        prettify(board)
+        counter += 1
+      else:
+        print('Position filled choose another')
+    else:
+      print('Choose either 0 , 1 or 2')
+
+	
+def prettify(board):
+	print(f"""
+  		
+	0	{board[0][0]} \u2503 {board[0][1]} \u2503 {board[0][2]}
+		\u2501\u2501\u254b\u2501\u2501\u2501\u254b\u2501\u2501
+	1	{board[1][0]} \u2503 {board[1][1]} \u2503 {board[1][2]}
+		\u2501\u2501\u254b\u2501\u2501\u2501\u254b\u2501\u2501
+	2	{board[2][0]} \u2503 {board[2][1]} \u2503 {board[2][2]}
+
+		0   1   2
+		""")
+
+def check3inRow(board, symbol):
+  for row in board:
+    if row[0] == row[1] == row[2] == symbol:
+      return True
+
+#print(check3inRow([['X','X','X'],[0,0,0],[0,0,0]],"X"))
+
+  # return if there are 3 Xs on any row of the board
+
+  
+def check3inColumn(board, symbol):
+   for row in board:
+     for n in range(3):
+      if board[0][n] == board[1][n] == board[2][n] == symbol:
+        return True
+
+def check3inDiagonal(board, symbol):
+	if (board[0][0] == board[1][1] == board[2][2] == symbol) or (board[0][2] == board[1][1] == board[2][0] == symbol):
+		return True
+
+intro()
+TicTacToe()
+
