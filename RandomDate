@@ -1,0 +1,27 @@
+from random import randint
+
+def generateRandomDate():
+  # list of months names, to be used to generate a random month name
+  monthsNames = {"January":31, "February":28, "March":31, "April":30, "May":31, "June":30,
+  "July":31, "August":31, "September":30, "October":31, "November":30, "December":31}
+  #for key,value in monthsNames.items():
+  #	print(f"{key} {value} ")
+  # generate a random year number
+  year = randint(1970,2020)
+  # generate a random month number
+  month = randint(0,11)
+  # depending on the month number, generate a random day number
+  name,days = list(monthsNames.items())[month]
+  day = randint(1,days)
+  # create the resultDate
+  return f"{name} {day} {year}"
+
+  # and return it
+  
+  
+# test
+randomDate = generateRandomDate()
+print("here is a random date: " + randomDate)
+randomDate = generateRandomDate()
+print("and here is another one: " + randomDate)
+
